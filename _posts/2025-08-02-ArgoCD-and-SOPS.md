@@ -3,6 +3,9 @@ title: ArgoCD & SOPS
 date: 2025-08-02 21:10:55 +0200
 categories: [DevOps]
 tags: [ArgoCD]
+image:
+  path: /assets/posts/2025-08-02-ArgoCD-and-SOPS.png
+  alt: ArgoCD degloyed Kubernetes resources using SOPS
 ---
 
 
