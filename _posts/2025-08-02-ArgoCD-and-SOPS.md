@@ -256,7 +256,7 @@ After all the previous steps, we have finally deployed Argo with the ability to 
 
 If you have followed the steps, you should get your Secret resources inside Argo.
 
-# Conclusion
+## Conclusion
 
 This is not an straightforward way to achieve this, but it is how I made it work. Overall, once it is set up, it is very satisfying and relieving to know that your secrets are safely stored.
 
