@@ -10,6 +10,13 @@ image:
 
 ## Overview
 
+![Statusline visible](/assets/posts/statusline-visible.png)
+_Active statusline_
+![Statusline invisible](/assets/posts/statusline-invisible.png)
+_Active statusline with hidden segments_
+![Statusline invisible](/assets/posts/inactive.png)
+_Inactive statusline_
+
 In this post we will build **a minimal, custom statusline for Neovim** that shows:
 
 - When the window is active:
@@ -34,6 +41,7 @@ This keeps the bar tidy when the space is tight or the names are long.
 
 > Follow this guide to understand the final implementation, that can be found at the end of the post.
 {: .prompt-tip }
+
 
 
 ## Prerequisites
