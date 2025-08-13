@@ -1,5 +1,5 @@
 ---
-title: Mimimal Neovim config v0.12 edition
+title: Minimal Neovim config v0.12 edition
 description: Less plugins, same power.
 categories: [Neovim]
 tags: [lua,configuration]
@@ -20,12 +20,12 @@ This is how our configuration will look like:
 │   ├── autocmds.lua
 │   ├── configs.lua
 │   ├── keymaps.lua
+│   ├── lsp.lua
 │   ├── plugins.lua
 │   └── statusline.lua
 └── lsp
     ├── rust-analyzer.lua
     ├── gopls.lua
-    ├── init.lua
     ├── helm_ls.lua
     ├── texlab.lua
     ├── bashls.lua
@@ -38,7 +38,7 @@ This is how our configuration will look like:
 
 ## Prerequisites
 
-- Neovim: `>= 0.12.0`. (`nightly` right now).
+- Neovim: `>= 0.12.0` (`nightly` right now).
 - Basic Lua knowledge.
 
 ## Neovim Configuration
