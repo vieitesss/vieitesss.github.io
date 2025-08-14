@@ -1,17 +1,17 @@
 ---
 title: Minimal Neovim config v0.12 edition
-description: Less plugins, same power.
+description: Fewer plugins, same power.
 categories: [Neovim]
 tags: [lua,configuration]
 ---
 
 ## Overview
 
-Neovim v0.12 is on the way, and it brings a lot of new features, being the most important (in my opinion) the new LSP API, and the builtin package manager.
+Neovim v0.12 is on its way, and it brings a lot of new features. The most important, in my opinion, ar the new LSP API and the built-in package manager.
 
-In this post, I will recreate my Neovim configuration using the less plugins possible, while still keeping the same power and features I had before. With **only 6 plugins**, I will be able to have a fully functional Neovim setup that includes most of the features I use on a daily basis.
+In this post, I will recreate my Neovim configuration using as few plugins as possible, while still keeping the same power and features I had before. With **fewer than 10 plugins**, I will be able to have a fully functional Neovim setup that includes most of the features I use on a daily basis.
 
-This is how our configuration will look like: 
+This is what our configuration will look like: 
 
 ```
 ~/.config/nvim/
@@ -33,7 +33,7 @@ This is how our configuration will look like:
     └── lua_ls.lua
 ```
 
-> I want to use this as a way to encourage you to check your current Neovim configuration and see if you can simplify it. Doing this, I have reduced my configuration from **nearly 2000 lines** to **less than 500 lines**. Just by removing unused plugins, and using the new features of Neovim v0.12, and builtin tools.
+> I want to use this as a way to encourage you to check your current Neovim configuration and see if you can simplify it. Doing this, I have reduced my configuration from **nearly 2000 lines** to **less than 500 lines**. Just by removing unused plugins and using the new features of Neovim v0.12 and built-in tools.
 {: .prompt-tip }
 
 ## Prerequisites
@@ -47,7 +47,7 @@ This is how our configuration will look like:
 
 The first step is to install Neovim. You can do this by searching for the v0.12 release (or greater) on the [Neovim GitHub page](https://github.com/neovim/neovim/releases/).
 
-Imagine that you already have your configuration directory set up at `~/.config/nvim/`, and you don't want to remove everything you have there. You can create a new directory called `~/.config/nvim-new/` and put your new configuration there.
+If you already have your configuration directory set up at `~/.config/nvim/`, and you don't want to remove everything you have there. You can create a new directory called `~/.config/nvim-new/` and put your new configuration there.
 
 To use it without changing your current setup, you can start Neovim with the `NVIM_APPNAME` environment variable set to `nvim-new`. Create an alias in your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`):
 
@@ -57,18 +57,18 @@ To use it without changing your current setup, you can start Neovim with the `NV
 alias vv='NVIM_APPNAME=nvim-new nvim'
 ```
 
-This way, you can use `vv` to start Neovim with the new configuration without affecting your current setup. And, if something goes wrong, you can always start Neovim with the default configuration by using `nvim` or your existing alias.
+This way, you can use `vv` to start Neovim with the new configuration without affecting your current setup. If something goes wrong, you can always start Neovim with the default configuration by using `nvim` or your existing alias.
 
 ### Global settings
 
-We will create a minimal configuration, but this doesn't mean that we cannot structure it well. Let's create a `init.lua` file in the `~/.config/nvim-new/` directory, and a `lua/` directory, where we will put our Lua modules. The `init.lua` file will be the entry point of our configuration.
+We will create a minimal configuration, but this doesn't mean that we cannot structure it well. Let's create an `init.lua` file in the `~/.config/nvim-new/` directory, and a `lua/` directory, where we will put our Lua modules. The `init.lua` file will be the entry point of our configuration.
 
 ```bash
 touch ~/.config/nvim-new/init.lua
 mkdir -p ~/.config/nvim-new/lua
 ```
 
-Inside the `lua` directory, we will create a `configs.lua` file to hold our global configs.
+Inside the `lua` directory, we will create a `configs.lua` file to hold our global settings.
 
 ```bash
 touch ~/.config/nvim-new/lua/configs.lua
@@ -115,7 +115,7 @@ opt.winborder = "rounded" -- Use rounded borders for windows
 vim.cmd.filetype("plugin indent on") -- Enable filetype detection, plugins, and indentation
 ```
 
-Those are the settings I use in my Neovim configuration. You can customize them to your liking.
+These are the settings I use in my Neovim configuration. You can customize them to your liking.
 
 ### Basic keymaps
 
@@ -163,9 +163,9 @@ local opts = { noremap = true, silent = true }
 keymap("n", "grd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
 ```
 
-This are some basic key mappings. We will add more as we go along, but this is a good starting point. You can customize the key mappings to your liking.
+These are some basic key mappings. We will add more as we go along, but this is a good starting point. You can customize the key mappings to your liking.
 
-### Auto commands
+### Autocommands
 
 Next, let's create an `autocmds.lua` file in the `lua` directory to hold our auto commands.
 
@@ -195,7 +195,7 @@ autocmd('TextYankPost', {
 
 #### Statusline
 
-The first not-plugin we will use is the builtin statusline. We can customize our own statusline using Lua. I have a [full post](https://vieitesss.github.io/posts/Neovim-custom-status-line/) about how to create a statusline in Neovim.
+The first non-plugin we will use is the built-in statusline. We can customize our own statusline using Lua. I have a full post about how to [create a custom statusline in Neovim](https://vieitesss.github.io/posts/Neovim-custom-status-line/).
 
 The statusline will be in a separate file called `statusline.lua` in the `lua` directory.
 
@@ -212,7 +212,7 @@ For the previous statusline to work, we need to require it in our `init.lua` fil
 require('statusline')
 ```
 
-And, we also need to install the [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) plugin, which we will use to show the Git status in the statusline.
+And we also need to install the [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) plugin, which we will use to show the Git status in the statusline.
 
 We will add it to our `plugins.lua` file, which we will create in the `lua` directory:
 
@@ -231,12 +231,12 @@ vim.pack.add({
 require('gitsigns').setup({ signcolumn = false })
 ```
 
-> Check `:help vim.pack` for more information about the builtin package manager. It's important to look to the `vim.pack.add` and `vim.pack.update` functions.
+> Check `:help vim.pack` for more information about the built-in package manager. It's important to look at the `vim.pack.add` and `vim.pack.update` functions.
 {: .prompt-tip }
 
 We can do `:restart` or reopen Neovim to load the new configuration. A prompt will appear asking us to install the plugin. We can press `y` to accept the installation.
 
-Let's add a keymap as well, to update the plugins easily:
+Let's add a keymap as well to update the plugins easily:
 
 ```lua
 -- ~/.config/nvim-new/lua/keymaps.lua
@@ -261,7 +261,7 @@ vim.pack.add({
 require("mason").setup({})
 ```
 
-Now, we can install the LSP servers we need using Mason. For example, the `lua-language-server` LSP. But we have to configure the LSP servers. This is done in the `lsp/` directory. We will create a file for each LSP server we want to use. But first, we need to create the `lsp.lua` file in the `lua/` directory, which will be the entry point for our LSP configuration.
+Now, we can install the LSP servers we need using Mason. For example, `lua-language-server`. But we have to configure the LSP servers. This is done in the `lsp/` directory. We will create a file for each LSP server we want to use. But first, we need to create the `lsp.lua` file in the `lua/` directory, which will be the entry point for our LSP configuration.
 
 ```bash
 touch ~/.config/nvim-new/lua/lsp.lua
@@ -341,11 +341,11 @@ return {
 
 We will do the same for the other LSP servers.
 
-After creating the previous `ls_lua.lua` file, we should have the LSP for Lua up and running. We can check that with `:checkhealth lsp`.
+After creating the previous `lua_ls.lua` file, we should have the LSP for Lua up and running. We can check that with `:checkhealth lsp`.
 
 #### Completion
 
-Another of the must-have plugins for me is [blink.cmp](https://github.com/saghen/blink.cmp). Is uses fuzzy matching to provide completion suggestions, a very useful feature in my opinion.
+Another of the must-have plugins for me is [blink.cmp](https://github.com/saghen/blink.cmp). It uses fuzzy matching to provide completion suggestions, a very useful feature in my opinion.
 
 We will add it to our `plugins.lua` file:
 
@@ -403,13 +403,13 @@ require('blink.cmp').setup({
 
 We already have completion working with the LSP servers we have configured!
 
-#### Netrw
-
-Oh yes.
+#### File explorer
 
 I'm an [Oil.nvim](https://github.com/stevearc/oil.nvim) user, you may be too. But listen, **give Netrw a chance**.
 
-It is really customizable, and it has a lot of features that you may not know about, as I didn't until I decided to use it. Here you have a [really good post](https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/) about it and how to customize it.
+You read that right.
+
+Netrw is highly customizable and has a lot of features you might not know about—I didn’t until I decided to use it. Here's a [really good post](https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/) about it and how to customize it.
 
 We will add some configuration to our `configs.lua` file to enable some features of Netrw:
 
@@ -428,7 +428,7 @@ keymap("n", "<Leader>ex", "<cmd>Ex %:p:h<CR>") -- Open Netrw in the current file
 
 And, it's true that there are some things that are a little bit more complicated to do with Netrw, like creating multiple files at once, or moving files around, but it is not impossible, and it becomes easier with practice. I have been using it for a while now, and I can say that it is a really powerful tool.
 
-But I find useful to have the following keymaps to make it easier to use:
+But I find the following keymaps useful:
 
 ```lua
 -- ~/.config/nvim-new/lua/autocmds.lua
@@ -442,18 +442,20 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set('n', '<S-Tab>', 'mF', bsr) -- Unmark all the files/directories
         -- Improved file creation
         vim.keymap.set('n', '%', function()
+            local dir = vim.b.netrw_curdir or vim.fn.expand('%:p:h')
             vim.ui.input({ prompt = 'Enter filename: ' }, function(input)
                 if input and input ~= '' then
-                    vim.cmd('!touch ' .. input) -- Create the file
-                    vim.api.nvim_feedkeys('<C-l>', 'n', false) -- Refresh the Netrw buffer
+                    local filepath = dir .. '/' .. input
+                    vim.cmd('!touch ' .. vim.fn.shellescape(filepath))
+                    vim.api.nvim_feedkeys('<C-l>', 'n', false)
                 end
             end)
         end, { buffer = true, silent = true })
-    end
+end
 })
 ```
 
-> We need to use `remap = true` to remap the builtin Netrw keymaps. `<C-c>` is not a builtin Netrw keymap, so we don't need to use it.
+> We need to use `remap = true` to remap the built-in Netrw keymaps. `<C-c>` is not a built-in Netrw keymap, so we don't need to use it.
 {: .prompt-info }
 
 #### Colorscheme
@@ -550,3 +552,92 @@ We can add some keymaps to use it easily:
 keymap("n", "<leader>gs", '<cmd>Git<CR>', opts)
 keymap("n", "<leader>gp", '<cmd>Git push<CR>', opts)
 ```
+
+#### Fast navigation
+
+For faster navigation between files, I use [harpoon2](https://github.com/ThePrimeagen/harpoon/tree/harpoon2). This lets you mark files and quickly navigate to them.
+
+Let's add it to our `plugins.lua` file:
+
+```lua
+-- ~/.config/nvim-new/lua/plugins.lua
+vim.pack.add({
+    { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
+    { src = "https://github.com/nvim-lua/plenary.nvim" }, -- Required by harpoon2
+})
+
+require("harpoon"):setup()
+```
+
+And some keymaps that I find useful. Keep in mind that I use Colemak.
+
+```lua
+-- ~/.config/nvim-new/lua/keymaps.lua
+keymap("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, opts)
+keymap("n", "<leader>ha", function() harpoon:list():add() end, opts)
+keymap("n", "<C-N>", function() harpoon:list():select(1) end, opts)
+keymap("n", "<C-E>", function() harpoon:list():select(2) end, opts)
+keymap("n", "<C-L>", function() harpoon:list():select(3) end, opts)
+```
+
+### Final touches
+
+Now that we have all the plugins and configurations set up, we just need to move the `~/.config/nvim-new/` directory to `~/.config/nvim/` to make it the default Neovim configuration. But first, if you have any existing configuration in `~/.config/nvim/`, you may want to back it up or rename it to avoid losing it.
+
+```bash
+mv ~/.config/nvim ~/.config/nvim-old
+mv ~/.config/nvim-new ~/.config/nvim
+```
+
+> Trust me, you don't want to lose your old configuration. You can always go back to it if you need to. When you are sure that everything is working as expected, you can remove the old configuration directory. But I would leave it for a while, or check all the files in it to see if you are missing something.
+{: .prompt-warning }
+
+## Additional thoughts
+
+**Use the quickfix list**. It is a really powerful tool that allows you to navigate through nearly anything. I think that it is underused, and it can be really useful for a lot of use cases.
+
+I think that this is a good starting point for a minimal Neovim configuration. You can always add more plugins and configurations as you need them, but I encourage you to keep it simple and only add what you really need.
+
+I personally use more plugins:
+- [command.nvim](https://github.com/vieitesss/command.nvim). This is a plugin I created to run shell commands from Neovim, and it is really useful for me. It let's you:
+    - Run shell commands as if you were in a terminal, **with your own aliases and environment variables**.
+    - Use **pipes and redirections**.
+    - Navigate through the command history.
+    - Use your **fuzzy picker** to select a command from the history (currently `fzf-lua` and `telescope.nvim` are supported).
+    - Edit the command with normal mode.
+    - Re-execute the last command.
+    - **Follow compilation errors** for many languages, pressing `<Enter>` on the error line to go to the file and line number.
+
+- Other AI-related plugins, like [copilot.vim](https://github.com/github/copilot.vim), [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) and [mcphub.nvim](https://github.com/ravitemer/mcphub.nvim).
+
+But the previous plugins are not that necessary. You can just use your terminal to run shell commands, or use ChatGPT on the web. But I find them useful for my workflow, and I use them daily.
+
+## Conclusion
+
+I hope this post has helped you to:
+- Simplify your Neovim configuration.
+- Get curious about the new features of Neovim v0.12.
+- Use the built-in features of Neovim to your advantage.
+- Get started with a minimal Neovim configuration that still has a lot of power and features.
+
+If you have any questions or suggestions, feel free to leave a comment.
+
+## Links
+
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [Neovim GitHub page](https://github.com/neovim/neovim/releases/)
+- [Custom Neovim statusline](https://vieitesss.github.io/posts/Neovim-custom-status-line/)
+- [mason.nvim](https://github.com/mason-org/mason.nvim)
+- [nvim-lspconfig documentation](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls)
+- [blink.cmp](https://github.com/saghen/blink.cmp)
+- [blink.cmp documentation](https://cmp.saghen.dev/)
+- [Oil.nvim](https://github.com/stevearc/oil.nvim)
+- [Netrw post](https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/)
+- [techbase.nvim](https://github.com/mcauley-penney/techbase.nvim)
+- [fzf-lua](https://github.com/ibhagwan/fzf-lua)
+- [vim-fugitive](https://github.com/tpope/vim-fugitive)
+- [harpoon2](https://github.com/ThePrimeagen/harpoon/tree/harpoon2)
+- [command.nvim](https://github.com/vieitesss/command.nvim)
+- [copilot.vim](https://github.com/github/copilot.vim)
+- [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
+- [mcphub.nvim](https://github.com/ravitemer/mcphub.nvim)
