@@ -14,7 +14,7 @@ Neovim v0.12 is on its way, and it brings a lot of new features. The most import
 
 In this post, I will recreate my Neovim configuration using as few plugins as possible, while still keeping the same power and features I had before. With **fewer than 10 plugins**, I will be able to have a fully functional Neovim setup that includes most of the features I use on a daily basis.
 
-This is what our configuration will look like: 
+This is what [our configuration](https://github.com/vieitesss/nvim) will look like: 
 
 ```
 ~/.config/nvim/
@@ -627,6 +627,7 @@ If you have any questions or suggestions, feel free to leave a comment.
 
 ## Links
 
+- [my Neovim configuration](https://github.com/vieitesss/nvim)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [Neovim GitHub page](https://github.com/neovim/neovim/releases/)
 - [Custom Neovim statusline](https://vieitesss.github.io/posts/Neovim-custom-status-line/)
