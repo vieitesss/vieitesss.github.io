@@ -3,6 +3,9 @@ title: Minimal Neovim config v0.12 edition
 description: Fewer plugins, same power.
 categories: [Neovim]
 tags: [lua,configuration]
+image:
+    path: /assets/posts/2025-08-13-Neovim-new-config.png
+    alt: Minimal Neovim config v0.12 edition
 ---
 
 ## Overview
