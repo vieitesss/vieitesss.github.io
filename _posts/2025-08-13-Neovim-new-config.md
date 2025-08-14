@@ -197,7 +197,7 @@ autocmd('TextYankPost', {
 
 The first non-plugin we will use is the built-in statusline. We can customize our own statusline using Lua. I have a full post about how to [create a custom statusline in Neovim](https://vieitesss.github.io/posts/Neovim-custom-status-line/).
 
-The statusline will be in a separate file called `statusline.lua` in the `lua` directory.
+The statusline will be in a separate file called `statusline.lua` in the `plugin` directory.
 
 ```bash
 touch ~/.config/nvim-new/plugin/statusline.lua
