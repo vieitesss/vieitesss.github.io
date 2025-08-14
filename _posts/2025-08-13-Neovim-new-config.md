@@ -207,7 +207,7 @@ There, we will include the code for our statusline. Check out the post to see th
 
 We also need to install the [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) plugin, which we will use to show the Git status in the statusline.
 
-We will add it to our `plugins.lua` file, which we will create in the `lua` directory:
+We will add it to our `plugins.lua` file, which we will create in the `plugin` directory:
 
 ```bash
 touch ~/.config/nvim-new/plugin/+plugins.lua
