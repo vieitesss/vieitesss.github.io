@@ -257,7 +257,7 @@ vim.pack.add({
 require("mason").setup({})
 ```
 
-Now, we can install the LSP servers we need using Mason. For example, `lua-language-server`. But we have to configure the LSP servers. This is done in the `lsp/` directory. We will create a file for each LSP server we want to use. But first, we need to create the `lsp.lua` file in the `lua/` directory, which will be the entry point for our LSP configuration.
+Now, we can install the LSP servers we need using Mason. For example, `lua-language-server`. But we have to configure the LSP servers. This is done in the `lsp/` directory. We will create a file for each LSP server we want to use. But first, we need to create the `lsp.lua` file in the `plugin/` directory, which will be the entry point for our LSP configuration.
 
 ```bash
 touch ~/.config/nvim-new/plugin/lsp.lua
