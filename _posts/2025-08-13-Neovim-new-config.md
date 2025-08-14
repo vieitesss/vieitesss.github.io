@@ -15,7 +15,7 @@ image:
 > - Removed some keymaps that are already built-in.
 {: prompt-info }
 
-Neovim v0.12 is on its way, and it brings a lot of new features. The most important, in my opinion, ar the new LSP API and the built-in package manager.
+Neovim v0.12 is on its way, and it brings a lot of new features. The most important, in my opinion, are the new LSP API and the built-in package manager.
 
 In this post, I will recreate my Neovim configuration using as few plugins as possible, while still keeping the same power and features I had before. With **fewer than 10 plugins**, I will be able to have a fully functional Neovim setup that includes most of the features I use on a daily basis.
 
