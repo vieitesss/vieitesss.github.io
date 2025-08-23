@@ -13,6 +13,7 @@ image:
 > There are some updates from the original post:
 > - No more `init.lua` nor `lua/` directory. The configuration is now in the `plugin/` directory.
 > - Removed some keymaps that are already built-in.
+> - Use [miniharp.nvim](https://github.com/vieitesss/miniharp.nvim) instead of [Harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2).
 {: prompt-info }
 
 Neovim v0.12 is on its way, and it brings a lot of new features. The most important, in my opinion, are the new LSP API and the built-in package manager.
@@ -544,29 +545,27 @@ keymap("n", "<leader>gp", '<cmd>Git push<CR>', opts)
 
 #### Fast navigation
 
-For faster navigation between files, I use [harpoon2](https://github.com/ThePrimeagen/harpoon/tree/harpoon2). This lets you mark files and quickly navigate to them.
+For faster navigation between files, I use [miniharp.nvim](https://github.com/vieitesss/miniharp.nvim). This is my own plugin, based on [Harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2). This lets you mark files and quickly navigate to them.
 
 Let's add it to our `plugins.lua` file:
 
 ```lua
 -- ~/.config/nvim-new/plugin/plugins.lua
 vim.pack.add({
-    { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
-    { src = "https://github.com/nvim-lua/plenary.nvim" }, -- Required by harpoon2
+    { src = "https://github.com/vieitesss/miniharp.nvim" },
 })
 
-require("harpoon"):setup()
+require('miniharp').setup({ show_on_autoload = true })
 ```
 
 And some keymaps that I find useful. Keep in mind that I use Colemak.
 
 ```lua
 -- ~/.config/nvim-new/plugin/keymaps.lua
-keymap("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, opts)
-keymap("n", "<leader>ha", function() harpoon:list():add() end, opts)
-keymap("n", "<C-N>", function() harpoon:list():select(1) end, opts)
-keymap("n", "<C-E>", function() harpoon:list():select(2) end, opts)
-keymap("n", "<C-L>", function() harpoon:list():select(3) end, opts)
+keymap("n", "<leader>m", '<cmd>lua require("miniharp").toggle_file()<CR>')
+keymap("n", "<leader>l", '<cmd>lua require("miniharp").show_list()<CR>')
+keymap("n", "<C-n>", require("miniharp").next)
+keymap("n", "<C-p>", require("miniharp").prev)
 ```
 
 ### Final touches
@@ -626,6 +625,7 @@ If you have any questions or suggestions, feel free to leave a comment.
 - [techbase.nvim](https://github.com/mcauley-penney/techbase.nvim)
 - [fzf-lua](https://github.com/ibhagwan/fzf-lua)
 - [vim-fugitive](https://github.com/tpope/vim-fugitive)
+- [miniharp.nvim](https://github.com/vieitesss/miniharp.nvim)
 - [harpoon2](https://github.com/ThePrimeagen/harpoon/tree/harpoon2)
 - [command.nvim](https://github.com/vieitesss/command.nvim)
 - [copilot.vim](https://github.com/github/copilot.vim)
