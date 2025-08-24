@@ -132,27 +132,23 @@ function Statusline.inactive()
     return " %t"
 end
 
-vim.api.nvim_exec2([[
-    -- Starts an autocommand group with the name `Statusline`.
-    augroup Statusline
+local group = vim.api.nvim_create_augroup("Statusline", { clear = true })
 
-    -- Clears any autocommands already in this group.
-    au!
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+    group = group,
+    desc = "Activate statusline on focus",
+    callback = function()
+        vim.opt_local.statusline = "%!v:lua.Statusline.active()"
+    end,
+})
 
-    -- On `WinEnter` or `BufEnter` events, for any file (`*`), set the `window-local`
-    -- option statusline to an expression (`%!...`) that calls your Lua function
-    -- `Statusline.active()`. `%!` means "evaluate this expression whenever the
-    -- statusline is drawn." `v:lua.Statusline.active()` bridges to the Lua global
-    -- `Statusline.active`.
-    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-
-    -- On `WinLeave` or `BufLeave` events, switch that window’s statusline to the
-    -- inactive variant by calling `Statusline.inactive()`.
-    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-
-    -- Ends the group
-    augroup END
-]], {})
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+    group = group,
+    desc = "Deactivate statusline when unfocused",
+    callback = function()
+        vim.opt_local.statusline = "%!v:lua.Statusline.inactive()"
+    end,
+})
 ```
 
 `statusline` is *window-local*, so we use `setlocal`. Even with `laststatus=3` (a single global bar) Neovim still reads the value from the current window, so these autocommands keep it correct.
@@ -478,13 +474,23 @@ end
   vim.keymap.set("n", "<leader>sp", function() Statusline.toggle_path() end, { desc = "Toggle statusline path" })
   vim.keymap.set("n", "<leader>sb", function() Statusline.toggle_branch() end, { desc = "Toggle statusline git branch" })
 
-  vim.api.nvim_exec2([[
-    augroup Statusline
-    au!
-    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-    augroup END
-  ]], {})
+  local group = vim.api.nvim_create_augroup("Statusline", { clear = true })
+
+  vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+    group = group,
+    desc = "Activate statusline on focus",
+    callback = function()
+      vim.opt_local.statusline = "%!v:lua.Statusline.active()"
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+    group = group,
+    desc = "Deactivate statusline when unfocused",
+    callback = function()
+      vim.opt_local.statusline = "%!v:lua.Statusline.inactive()"
+    end,
+  })
   ```
 </details>
 
