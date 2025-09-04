@@ -117,7 +117,7 @@ comments:
   giscus:
     repo: vieitesss/vieitesss.github.io # <gh-username>/<repo>
     repo_id: R_kgDOPXOXyA
-    category: General
+    category: Comments
     category_id: DIC_kwDOPXOXyM4Ct3NX
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
