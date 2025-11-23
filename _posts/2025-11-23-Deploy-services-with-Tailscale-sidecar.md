@@ -12,7 +12,7 @@ In this post, I will guide you through the process of deploying services using D
 
 When I thought about buying a Raspberry Pi, I wanted to use it as a home server to host various services. This made me think about **how to access those services remotely**. After some research, I found [Tailscale](https://tailscale.com/), a VPN solution that allows secure access to devices over the Internet.
 
-Tailscale lets you have your own private network, know as a **tailnet**, where all your devices can communicate securely. This is perfect for my use case, as I want to access my Raspberry Pi services from anywhere without exposing them directly to the Internet.
+Tailscale lets you have your own private network, known as a **tailnet**, where all your devices can communicate securely. This is perfect for my use case, as I want to access my Raspberry Pi services from anywhere without exposing them directly to the Internet.
 
 I already knew that I would use Docker Compose to manage my services, so the challenge was **how to integrate Tailscale with Docker Compose**.
 
