@@ -1,4 +1,12 @@
-# Chirpy Starter
+# My personal blog
+
+In this respository, I host the source code for my personal blog powered by Jekyll and the Chirpy theme.
+
+This blog purpose is to share my thoughts, experiences, and knowledge on various topics including technology, programming, and personal development.
+
+---
+
+# Chirpy Readme
 
 [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
 [![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
