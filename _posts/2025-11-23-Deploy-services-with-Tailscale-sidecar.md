@@ -2,6 +2,8 @@
 title: Deploy services with Docker Compose and Tailscale as sidecar.
 description: A guide on how I deploy Docker Compose services with Tailscale as a sidecar.
 categories: [Raspberry Pi,Docker,Tailscale]
+image:
+  path: /assets/img/tailscale-sidecar.png
 ---
 
 In this post, I will guide you through the process of deploying services using Docker Compose with Tailscale running as a sidecar container. This setup allows you to securely access your services over the Internet through Tailscale's VPN capabilities.
