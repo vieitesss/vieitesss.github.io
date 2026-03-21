@@ -3,6 +3,9 @@ title: Use Tangled on a Raspberry Pi as a secondary Git remote
 description: How I keep GitHub as my main Git server and use Tangled on my Raspberry Pi as an extra push target.
 categories: [Raspberry Pi, Git, Tangled]
 tags: [Cloudflare, SSH, self-hosting]
+image:
+  path: /assets/posts/set-up-tangled.jpeg
+  alt: Tangled on Raspberry Pi
 ---
 
 ## Overview
